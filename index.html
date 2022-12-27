@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer Using JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <h1 class="heading">Countdown Timer - JavaScript</h1>
+        <div class="show_data">
+            <div class="timeUnits">
+                <div class="daysleft"></div>
+                <p>Days</p>
+            </div>
+            <div class="timeUnits">
+                <div class="hoursleft"></div>
+                <p>Hours</p>
+            </div>
+            <div class="timeUnits">
+                <div class="minutesleft"></div>
+                <p>Minutes</p>
+            </div>
+            <div class="timeUnits">
+                <div class="secondsleft"></div>
+                <p>Seconds</p>
+            </div>
+        </div>
+        <h4 class="countdown-end">Countdown End ~ 8 March 2023 00:00:00</h4>
+    </div>
+    <script>
+
+        let showData = document.querySelector('.showdata');
+        let countEnddsAt = new Date("March 8 2023 00:00:00").getTime();
+        setInterval(() => {
+            let currentTime = new Date().getTime()
+            let timeLeft = countEnddsAt - currentTime;
+            let daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            let hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            let secondsLeft = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.querySelector('.daysleft').innerText = daysLeft
+            document.querySelector('.hoursleft').innerText = hoursLeft
+            document.querySelector('.minutesleft').innerText = minutesLeft
+            document.querySelector('.secondsleft').innerText = secondsLeft
+
+            showData = 'Days' + daysLeft + 'Hours' + hoursLeft + 'Minutes' + minutesLeft + 'Seconds' + secondsLeft;
+            if (currentTime < 0) {
+                countEnddsAt.innerHTML = "International Women's Day"
+            };
+        }, 1000);
+    </script>
+</body>
+
+</html>
